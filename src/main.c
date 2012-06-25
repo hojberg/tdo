@@ -1,15 +1,15 @@
-#include "tdo.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int main()
-{
+#include "tasks.h"
+#include "task.h"
+#include "ui.h"
 
-  fetch_tasks();
-  /*
-  struct Task task;
+int main() {
+  Task *tasks = malloc( sizeof(*tasks) );
 
-  task.description = 'Buy milk';
-  task.completed = false;
-  */
+  fetch_incomplete_tasks(tasks);
+  render(tasks);
 
   return 0;
 }
