@@ -9,7 +9,7 @@ void render_list(Task *tasks, int row, int col) {
 
   for (i = 0; i < len; i++) {
     move(row + i, col);
-	  printw("%s", tasks[i].description);
+    printw("%s", tasks[i].description);
   }
 }
 
