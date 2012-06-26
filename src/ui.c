@@ -5,14 +5,11 @@ const int MARGIN = 5;
 
 void render_list(Task *tasks, int row, int col) {
   int i;
+  int len = 1;
 
-  // TODO how to loop over dynamic sized array?
-  for (i = 0; i < 1; i++) {
+  for (i = 0; i < len; i++) {
     move(row + i, col);
-
-    // for some reason this prints out a random
-    // memory address
-	  printw(tasks[i].description);
+	  printw("%s", tasks[i].description);
   }
 }
 

@@ -20,7 +20,7 @@ void fetch_incomplete_tasks(Task *tasks) {
     const unsigned char* desc = sqlite3_column_text(res, 1); 
     
     // build task
-    strcpy(task.description, (const char*)desc);
+    strcpy(task.description, (char*)desc);
 
     task.id       = sqlite3_column_int(res, 0);
     task.estimate = sqlite3_column_int(res, 2);
