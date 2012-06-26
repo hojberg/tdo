@@ -16,39 +16,39 @@ void render_list(Task *tasks, int row, int col) {
 void render_incomplete(Task *tasks) {
   move(2, 5);
 
-	attron(COLOR_PAIR(3));
+  attron(COLOR_PAIR(3));
   printw("TODAY");
-	attroff(COLOR_PAIR(2));
+  attroff(COLOR_PAIR(2));
 
-	attron(COLOR_PAIR(0));
+  attron(COLOR_PAIR(0));
   render_list(tasks, 4, 5);
-	attroff(COLOR_PAIR(0));
+  attroff(COLOR_PAIR(0));
 }
 
 void init_colors() {
 	start_color();
 
   // white / black
-	init_pair(0, COLOR_WHITE, COLOR_BLACK);
+  init_pair(0, COLOR_WHITE, COLOR_BLACK);
 	
-	// grey / black
-	init_pair(1, 8, COLOR_BLACK);
+  // grey / black
+  init_pair(1, 8, COLOR_BLACK);
 	
-	// black / grey 
-	//init_pair(2, COLOR_BLACK, 7);
-	init_pair(2, 12, 0);
+  // black / grey 
+  //init_pair(2, COLOR_BLACK, 7);
+  init_pair(2, 12, 0);
 
-	// black / orange
-	init_pair(3, COLOR_BLACK, 3);
+  // black / orange
+  init_pair(3, COLOR_BLACK, 3);
 } 
 
 void render(Task *tasks) {	
-	initscr();
-	init_colors();
+  initscr();
+  init_colors();
 
-	render_incomplete(tasks);
-	refresh();
+  render_incomplete(tasks);
+  refresh();
 
-	getch();
-	endwin();
+  getch();
+  endwin();
 }
