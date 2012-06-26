@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <sqlite3.h>
 #include "task.h"
 
@@ -15,13 +16,16 @@ void fetch_incomplete_tasks(Task *tasks) {
 
   while(sqlite3_step(res) == SQLITE_ROW) {
     Task task;
+    // pull out description
+    const unsigned char* desc = sqlite3_column_text(res, 1); 
     
     // build task
-    task.id           = sqlite3_column_int(res, 0);
-    task.description  = sqlite3_column_text(res, 1);
-    task.estimate     = sqlite3_column_int(res, 2);
-    task.position     = sqlite3_column_int(res, 3);
-   
+    strcpy(task.description, (const char*)desc);
+
+    task.id       = sqlite3_column_int(res, 0);
+    task.estimate = sqlite3_column_int(res, 2);
+    task.position = sqlite3_column_int(res, 3);
+
     // append to array
     tasks[i] = task;
 

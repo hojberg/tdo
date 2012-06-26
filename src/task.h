@@ -1,7 +1,6 @@
 typedef struct {
   int id;
-  const char * description;
+  const char * description[512];
   int estimate;
   int position;
-  //bool completed;
 } Task;

@@ -1,6 +1,7 @@
-CFLAGS=-Wall -g
+CC=gcc
+CFLAGS=-Wall -g -std=c99
 
 all: 
-	gcc -c src/tasks.c -o bin/tasks.o
-	gcc -c src/ui.c -o bin/ui.o
-	gcc -o bin/tdo src/main.c bin/ui.o bin/tasks.o -lsqlite3 -lncurses
+	$(CC) $(CFLAGS) -c src/tasks.c -o bin/tasks.o
+	$(CC) $(CFLAGS) -c src/ui.c -o bin/ui.o
+	$(CC) $(CFLAGS) -o bin/tdo src/main.c bin/ui.o bin/tasks.o -lsqlite3 -lncurses
