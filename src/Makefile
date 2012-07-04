@@ -9,7 +9,7 @@ PROJECT := tdo
 .PHONY: clean
 
 $(PROJECT): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(TARGET) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET) $(LIBS)
 
 clean:
 	@-rm -f $(OBJECTS) $(TARGET)
