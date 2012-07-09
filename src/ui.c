@@ -5,7 +5,7 @@ const int MARGIN = 5;
 
 void render_list(Task *tasks, int row, int col) {
   int i;
-  int len = 1;
+  int len = 2;
 
   for (i = 0; i < len; i++) {
     move(row + i, col);

@@ -19,7 +19,7 @@ void fetch_incomplete_tasks(Task *tasks) {
     Task task;
     // pull out description
     const unsigned char* desc = sqlite3_column_text(res, 1); 
-    
+
     // build task
     strncpy(task.description, (char *)desc, 256);
 
