@@ -6,7 +6,7 @@
 #include "ui.h"
 
 int main() {
-  Task *tasks = malloc( sizeof(*tasks) );
+  Task tasks[20];
 
   fetch_incomplete_tasks(tasks);
   render(tasks);
