@@ -20,6 +20,12 @@ void render_incomplete(Task *tasks, int len) {
 
   attron(COLOR_PAIR(3));
   printw("TODAY");
+  for (int i = 10; i < 60; i++) {
+    move(2, i);
+    printw(" ");
+  }
+  move(2, 60);
+  printw("%d", len);
   attroff(COLOR_PAIR(2));
 
   attron(COLOR_PAIR(0));
