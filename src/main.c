@@ -6,7 +6,11 @@
 #include "ui.h"
 
 int main() {
-  Task tasks[20];
+  Task *tasks;
+
+  // allocate 30 tasks initially
+  int size = 30 * sizeof( *tasks );
+  tasks = malloc( size );
 
   fetch_incomplete_tasks(tasks);
   render(tasks);
