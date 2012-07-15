@@ -1,11 +1,11 @@
 #include <ncurses.h>
+#include "task_list.h"
 #include "task.h"
 
 const int MARGIN = 5;
 
-void render_list(Task *tasks, int row, int col) {
+void render_list(Task *tasks, int len, int row, int col) {
   int i = 0;
-  int len = 10;
   Task task;
 
   for (i = 0; i < len; i++) {
@@ -15,7 +15,7 @@ void render_list(Task *tasks, int row, int col) {
   }
 }
 
-void render_incomplete(Task *tasks) {
+void render_incomplete(Task *tasks, int len) {
   move(2, 5);
 
   attron(COLOR_PAIR(3));
@@ -23,7 +23,7 @@ void render_incomplete(Task *tasks) {
   attroff(COLOR_PAIR(2));
 
   attron(COLOR_PAIR(0));
-  render_list(tasks, 4, 5);
+  render_list(tasks, len, 4, 5);
   attroff(COLOR_PAIR(0));
 }
 
@@ -44,11 +44,13 @@ void init_colors() {
   init_pair(3, COLOR_BLACK, 3);
 } 
 
-void render(Task *tasks) {	
+void render(TaskList task_list) {	
   initscr();
   init_colors();
 
-  render_incomplete(tasks);
+  render_incomplete(task_list.today, 
+                    task_list.today_count);
+
   refresh();
 
   getch();
