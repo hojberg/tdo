@@ -4,12 +4,14 @@
 const int MARGIN = 5;
 
 void render_list(Task *tasks, int row, int col) {
-  int i;
-  int len = 2;
+  int i = 0;
+  int len = 10;
+  Task task;
 
   for (i = 0; i < len; i++) {
+    task = tasks[i];
     move(row + i, col);
-    printw("%s", tasks[i].description);
+    printw("%s", task.description);
   }
 }
 
