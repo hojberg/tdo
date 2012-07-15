@@ -2,18 +2,14 @@
 #include <stdio.h>
 
 #include "tasks.h"
-#include "task.h"
+#include "task_list.h"
 #include "ui.h"
 
 int main() {
-  Task *tasks;
+  TaskList task_list;
 
-  // allocate 30 tasks initially
-  int size = 30 * sizeof( *tasks );
-  tasks = malloc( size );
-
-  fetch_incomplete_tasks(tasks);
-  render(tasks);
+  fetch_incomplete_tasks(&task_list);
+  render(&task_list);
 
   return 0;
 }
