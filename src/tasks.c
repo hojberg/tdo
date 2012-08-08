@@ -41,12 +41,3 @@ void fetch_incomplete_tasks(TaskList task_list) {
   sqlite3_finalize(res);
   sqlite3_close(conn);
 }
-
-void create_task() {
-}
-
-void update_task() {
-}
-
-void remove_task() {
-}
