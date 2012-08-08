@@ -66,15 +66,15 @@ void init_colors() {
   init_pair(3, 0, 11);
 } 
 
-void render(TaskList task_list) {	
+void render(TaskList *task_list) {	
   initscr();
   init_colors();
 
-  render_today(task_list.today, 
-               task_list.today_count);
+  render_today(task_list->today, 
+               task_list->today_count);
 
-  render_next(task_list.next, 
-              task_list.next_count);
+  render_next(task_list->next, 
+              task_list->next_count);
 
   refresh();
 

@@ -5,7 +5,7 @@
 #include "task.h"
 #include "task_list.h"
 
-void fetch_incomplete_tasks(TaskList task_list) {
+void fetch_incomplete_tasks(TaskList *task_list) {
   char query[] = "SELECT * FROM tasks WHERE completed = 0";
   char database[] = "db/tdo.db";
   sqlite3 *conn;
@@ -31,12 +31,12 @@ void fetch_incomplete_tasks(TaskList task_list) {
     task.due_on     = sqlite3_column_int(res, 5);
 
     // append to array
-    task_list.today[i] = task;
+    task_list->today[i] = task;
 
     i++;
   }
 
-  task_list.today_count = i;
+  task_list->today_count = i;
 
   sqlite3_finalize(res);
   sqlite3_close(conn);
