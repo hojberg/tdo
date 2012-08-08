@@ -7,10 +7,12 @@ typedef struct TaskList {
 
   int today_count;
   Task today[20];
-  /*
-  int size = 30 * sizeof( *tasks );
-  tasks = malloc( size );
-  */
+
+  int next_count;
+  Task next[100];
+
+  int complete_count;
+  Task complete[10];
 
 } TaskList;
 

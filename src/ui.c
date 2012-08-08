@@ -4,58 +4,77 @@
 
 const int MARGIN = 5;
 
-void render_list(Task *tasks, int len, int row, int col) {
+// list rendition
+void render_header(char label[], int task_list_size, int width, int color, int row, int col) {
+  move(row, col);
+
+  attron(COLOR_PAIR(color));
+
+  for (int i = col; i < width; i++) {
+    move(row, i);
+    printw(" ");
+  }
+
+  move(row, col);
+  printw(" %s", label);
+
+  move(row, width);
+  printw("%d ", task_list_size);
+
+  attroff(COLOR_PAIR(color));
+}
+
+void render_task(Task task, int row, int col) {
+  move(row, col);
+
+  if (0) {
+    printw("OVERDUE ");
+  }
+
+  printw("%s", task.description);
+}
+
+void render_list(Task *tasks, int len, int color, int row, int col) {
   int i = 0;
   Task task;
 
-  for (i = 0; i < len; i++) {
+  attron(COLOR_PAIR(color));
+  for (; i < len; i++) {
     task = tasks[i];
-    move(row + i, col);
-    printw("%s", task.description);
+    render_task(task, row + i, col);
   }
+  attroff(COLOR_PAIR(color));
 }
 
-void render_incomplete(Task *tasks, int len) {
-  move(2, 5);
+// render specifics
+void render_today(Task *tasks, int len) {
+  render_header("TODAY", len, 60, 3, 2, 5);
+  render_list(tasks, len, 0, 4, 5);
+}
 
-  attron(COLOR_PAIR(3));
-  printw("TODAY");
-  for (int i = 10; i < 60; i++) {
-    move(2, i);
-    printw(" ");
-  }
-  move(2, 60);
-  printw("%d", len);
-  attroff(COLOR_PAIR(2));
-
-  attron(COLOR_PAIR(0));
-  render_list(tasks, len, 4, 5);
-  attroff(COLOR_PAIR(0));
+void render_next(Task *tasks, int len) {
+  render_header("NEXT", len, 30, 3, 2, 80);
+  render_list(tasks, len, 4, 4, 80);
 }
 
 void init_colors() {
 	start_color();
 
-  // white / black
-  init_pair(0, COLOR_WHITE, COLOR_BLACK);
-	
-  // grey / black
-  init_pair(1, 8, COLOR_BLACK);
-	
-  // black / grey 
-  //init_pair(2, COLOR_BLACK, 7);
-  init_pair(2, 12, 0);
-
-  // black / orange
-  init_pair(3, COLOR_BLACK, 3);
+  init_pair(0, 10, 0);
+  init_pair(1, 8, 0);
+  init_pair(2, 0, 10);
+  init_pair(3, 0, 11);
 } 
 
 void render(TaskList task_list) {	
   initscr();
   init_colors();
 
-  render_incomplete(task_list.today, 
-                    task_list.today_count);
+  render_today(task_list.today, 
+               task_list.today_count);
+
+  render_next(task_list.next, 
+              task_list.next_count);
 
   refresh();
 
